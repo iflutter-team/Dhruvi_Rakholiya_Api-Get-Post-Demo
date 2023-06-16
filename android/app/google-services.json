@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477591858070",
+    "project_id": "sitafal-878eb",
+    "storage_bucket": "sitafal-878eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477591858070:android:c083afbd7ee0de13f08bb7",
+        "android_client_info": {
+          "package_name": "com.example.sitafal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdA5pUgPRoyVI01NEjQt51nMkrHXNtXqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
