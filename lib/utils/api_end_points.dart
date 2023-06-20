@@ -9,9 +9,16 @@ class EndpointRes{
   static const usersEndPoint = "${baseUrl}users";
 
 
-  ///-------------------postApi--------------///
-
   static const baseUrl1 = "https://dummyjson.com/";
   static const productAPI = '${baseUrl1}products';
   static const addProductAPI = '${baseUrl1}products/add';
+
+  ///-------------------postApi--------------///
+
+
+     static const baseUrlAuthentication ="https://panchat.in/api/client/";
+     static const String signUp = "${baseUrlAuthentication}Register";
+     static const String login = "${baseUrlAuthentication}login";
+
+
 }

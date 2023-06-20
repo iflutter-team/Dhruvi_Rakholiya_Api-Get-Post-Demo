@@ -9,7 +9,7 @@ class StringRes {
 
   ///---------signup-------///
   static const nameHintTxt = "Enter your Name";
-  static const phoneHintTxt = "Enter your Number";
+  static const phoneHintTxt = "Enter your LastNme";
   static const signupEmailHintTxt = 'Enter Your Email';
   static const signupPassHintTxt = 'Enter Your Password';
   static const signupBtnTxt = "SignUp";

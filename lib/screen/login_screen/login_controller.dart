@@ -2,11 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sitafal/model/model_users.dart';
+import 'package:sitafal/model/login_model.dart';
 import 'package:sitafal/screen/home_screen/home_screen.dart';
+import 'package:sitafal/screen/login_screen/login_api.dart';
+// import 'package:sitafal/model/model_users.dart';
+// import 'package:sitafal/screen/home_screen/home_screen.dart';
 import 'package:sitafal/screen/signup_screen/signup_screen.dart';
-import 'package:sitafal/services/firebase_services.dart';
-import 'package:sitafal/services/pref_services.dart';
+// import 'package:sitafal/services/firebase_services.dart';
+// import 'package:sitafal/services/pref_services.dart';
 //import 'package:sitafal/services/pref_services.dart';
 import 'package:sitafal/utils/firebase_res.dart';
 import 'package:sitafal/utils/pref_Res.dart';
@@ -15,32 +18,49 @@ import 'package:sitafal/utils/pref_Res.dart';
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+  LoginModel? loginGetPostData;
 
-  void loginOnTap() {
 
-    String userString = PrefServices.getString(PrefRes.userKey);
-    if (userString == '') {
-      Get.snackbar('Login failed', "plz sign Up");
-    } else {
-      List<User> userList = userFromJson(userString);
-      bool value = userList.any((element) =>
-          element.email == emailController.text &&
-          element.password == passController.text);
-      if (value) {
-        PrefServices.setValue(PrefRes.isLogin, true);
-        int index = userList.indexWhere((element) =>
-            element.email == emailController.text &&
-            element.password == passController.text);
-        User loggedUser = userList[index];
-        PrefServices.setValue(PrefRes.loggedUser, json.encode(loggedUser.toJson()));
-        userList.remove(loggedUser);
-        Get.off(const Home());
-      } else {
-        Get.snackbar('Login failed', "plz Enter valid UserName");
-      }
+   Future userLogin() async {
+    Map<String ,dynamic> body = {
+      "email" : emailController.text.trim(),
+      "Password" : passController.text.trim(),
+    };
+
+    loginGetPostData = await LoginApi.loginUser(body: body);
+
+    if(loginGetPostData !=null && loginGetPostData!.status == 1){
+      Get.off(const Home());
     }
 
+
   }
+
+  // void loginOnTap() {
+  //
+  //   String userString = PrefServices.getString(PrefRes.userKey);
+  //   if (userString == '') {
+  //     Get.snackbar('Login failed', "plz sign Up");
+  //   } else {
+  //     List<User> userList = userFromJson(userString);
+  //     bool value = userList.any((element) =>
+  //         element.email == emailController.text &&
+  //         element.password == passController.text);
+  //     if (value) {
+  //       PrefServices.setValue(PrefRes.isLogin, true);
+  //       int index = userList.indexWhere((element) =>
+  //           element.email == emailController.text &&
+  //           element.password == passController.text);
+  //       User loggedUser = userList[index];
+  //       PrefServices.setValue(PrefRes.loggedUser, json.encode(loggedUser.toJson()));
+  //       userList.remove(loggedUser);
+  //       Get.off(const Home());
+  //     } else {
+  //       Get.snackbar('Login failed', "plz Enter valid UserName");
+  //     }
+  //   }
+  //
+  // }
 
 
   // Future<void> checkData() async {

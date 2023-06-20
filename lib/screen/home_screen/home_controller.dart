@@ -12,7 +12,7 @@ import 'package:sitafal/services/pref_services.dart';
 // import 'package:sitafal/utils/firebase_res.dart';
 import 'package:sitafal/utils/pref_Res.dart';
 
-class HomeController extends GetxController{
+class HomeScreenController extends GetxController{
 
   TextEditingController email =TextEditingController();
   TextEditingController pass =TextEditingController();
@@ -73,15 +73,16 @@ class HomeController extends GetxController{
     //   });
     // });
   }
-  ProductModel? imageList;
   User? loginUser;
   List<User>? allUser;
+  ProductModel? imageList;
 @override
   void onInit() {
     // TODO+
   //  .......: implement onInit
-    loginUserData();
-     allData();
+    getImageList();
+  //   loginUserData();
+  //    allData();
     super.onInit();
   }
   Future<void> getImageList() async {

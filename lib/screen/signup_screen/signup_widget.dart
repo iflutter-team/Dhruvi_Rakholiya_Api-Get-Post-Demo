@@ -30,7 +30,7 @@ Widget phoneTextFiled() {
         child: textFormField(
           readOnly: false,
           obscure: false,
-          controller: controller.numberController,
+          controller: controller.emailController,
           txtAlign: TextAlign.start,
           hint: StringRes.phoneHintTxt,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -48,7 +48,7 @@ Widget emailTextFiled() {
         child: textFormField(
           readOnly: false,
           obscure: false,
-          controller: controller.emailController,
+          controller: controller.lastController,
           txtAlign: TextAlign.start,
           hint: StringRes.signupEmailHintTxt,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -79,7 +79,7 @@ Widget passTextFiled() {
 Widget signUpBtn() {
   return GetBuilder<SignupController>(builder: (controller) {
     return ElevatedButton(
-        onPressed: controller.signUpOnTap,
+        onPressed: ()=> controller.userSignUp(),
         child: const Text(
           StringRes.signupBtnTxt,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

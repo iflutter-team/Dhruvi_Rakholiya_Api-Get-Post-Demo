@@ -46,7 +46,7 @@ Widget passTextFiled() {
 Widget loginBtn() {
   return GetBuilder<LoginController>(builder: (controller) {
     return ElevatedButton(
-        onPressed: controller.loginOnTap,
+        onPressed:()=> controller.userLogin(),
         child: const Text(
           StringRes.loginBtnTxt,
           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),

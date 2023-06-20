@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sitafal/model/model_users.dart';
+import 'package:sitafal/model/signup_model.dart';
+import 'package:sitafal/screen/login_screen/login_screen.dart';
+import 'package:sitafal/screen/signup_screen/signup_api.dart';
 import 'package:sitafal/services/firebase_services.dart';
 // import 'package:sitafal/services/firebase_services.dart';
 import 'package:sitafal/services/pref_services.dart';
@@ -11,14 +14,15 @@ import 'package:sitafal/utils/pref_Res.dart';
 class SignupController extends GetxController{
 
   TextEditingController nameController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
+  TextEditingController lastController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+  SignUpModel? getPostData;
   
   void signUpOnTap(){
     Map<String, dynamic> user={
       "name":nameController.text,
-      "mobile":numberController.text,
+      "mobile":lastController.text,
       "email":emailController.text,
       "password":passController.text,
     };
@@ -39,6 +43,23 @@ class SignupController extends GetxController{
     Get.back();
   }
 
+
+  Future userSignUp() async {
+
+    Map<String ,dynamic> body = {
+      "FirstName" :nameController.text.trim(),
+      "EmailId" : emailController.text.trim(),
+      "LastName" : lastController.text.trim(),
+      "Password" : passController.text.trim(),
+    };
+
+    getPostData= await SingUpApi.registerUser(body: body);
+
+    if(getPostData !=null && getPostData!.status == 1){
+    Get.off(const Login());
+    }
+
+  }
 
 
   // Future<void> addData() async {
